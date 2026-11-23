@@ -1,0 +1,22 @@
+name = "YOUR-WORKER-NAME"
+main = "src/worker.js"
+compatibility_date = "2025-01-01"
+workers_dev = true
+
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "YOUR-R2-BUCKET"
+
+[[durable_objects.bindings]]
+name = "LIMITER"
+class_name = "Limiter"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Limiter"]
+
+[vars]
+MAX_BYTES = "5242880"
+MAX_UNZIPPED = "41943040"
+PER_IP_HOUR = "10"
+DAILY_CAP = "2000"

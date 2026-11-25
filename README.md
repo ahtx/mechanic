@@ -47,22 +47,22 @@ mechanic config endpoint http://localhost:8090/v1
 
 ### Run with Kindi
 
-[Mechanic v4](https://huggingface.co/ahtx/AH-Mechanic-1-4B-Kindi) is the Kindi edition. It is a specially trained
+[Mechanic v6](https://huggingface.co/ahtx/AH-Mechanic-1-4B-Kindi) is the Kindi edition. It is a specially trained
 adapter for Prism ML's Bonsai 2 Ternary 4B, which is derived from Qwen3.5-4B. It runs in
 [Kindi](https://amirhusain.com/kindi) 0.7.2 or later on NVIDIA cards with 2 GB or more:
 
 ```bash
 huggingface-cli download prism-ml/Ternary-Bonsai-2-4B-gguf Ternary-Bonsai-2-4B-PTQ1_0.gguf --local-dir .
-huggingface-cli download ahtx/AH-Mechanic-1-4B-Kindi --local-dir mechanic-v4
+huggingface-cli download ahtx/AH-Mechanic-1-4B-Kindi --local-dir mechanic-v6
 kindi convert Ternary-Bonsai-2-4B-PTQ1_0.gguf
-kindi --lora mechanic-v4 serve
+kindi --lora mechanic-v6 serve
 mechanic config endpoint http://localhost:8093/v1
 ```
 
 On our 200-task sandbox benchmark, at Kindi's default sampling settings (temperature 0.7, top-p 0.8, top-k 20; mean
-of 3 runs), Mechanic v4 (ternary, run in Kindi) scores 68.8 against 62.7 for the untrained Qwen3.5-4B. With greedy
-decoding it scores 68.0 and the untrained Qwen3.5-4B scores 73.0. AH-Mechanic-1-4B scores higher (82.0% greedy); use
-Mechanic v4 where that model does not fit or runs slowly.
+of 3 runs), Mechanic v6 (ternary, run in Kindi) scores 73.2 against 62.7 for the untrained Qwen3.5-4B. With greedy
+decoding the two tie at 73.0. AH-Mechanic-1-4B scores higher (82.0% greedy); use
+Mechanic v6 where that model does not fit or runs slowly.
 
 ## Run a task
 
